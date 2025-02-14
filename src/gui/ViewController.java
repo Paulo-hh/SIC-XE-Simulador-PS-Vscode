@@ -1,10 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package gui;
-
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -111,6 +105,7 @@ public class ViewController implements Initializable {
 	public void onBtEnviarAction() throws Exception {
 		String texto = textoArea.getText().replaceAll("\n", System.getProperty("line.separator"));
 		lista_instrucao = Instrucao.lerTexto(texto);
+		Func.setInstrucoes(lista_instrucao);
 		montador = new Montador(lista_instrucao, memoria, registrador);
 		montador.atribuirEndereco();
     	saida.setText(montador.getTextoSaida());
