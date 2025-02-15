@@ -19,7 +19,7 @@ import model.entities.Instrucao;
 import model.entities.ListaMemoria;
 import model.entities.Memoria;
 import model.entities.Montador;
-import model.entities.Operacoes;
+import model.entities.Maquina;
 import model.entities.Registrador;
 
 public class ViewController implements Initializable {

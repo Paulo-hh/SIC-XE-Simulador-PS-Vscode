@@ -15,7 +15,7 @@ public class Montador{
 	private Registrador registradores;
 	private String proximoEndereco;
 	private String textoSaida = "programa: ";
-	Operacoes op;
+	Maquina maquina;
 
 
 	public String getTextoSaida() {
@@ -31,7 +31,7 @@ public class Montador{
 		this.conjuntoMemoria = memoria;
 		this.registradores = regs;
 		this.proximoEndereco = "0000";
-		op = new Operacoes(textoSaida, ponteiroInstrucao);
+		maquina = new Maquina(textoSaida, ponteiroInstrucao);
 	}
 	
 	public void atribuirEndereco() {
@@ -124,16 +124,16 @@ public class Montador{
 				? resolverEndereco(instrucao_atual.getEndereco(), argumentos_Instrucao) 
 				: resolverEndereco(null, argumentos_Instrucao);
 		
-		op.setPonteiroInstrucao(ponteiroInstrucao);
-		op.setTextoSaida(textoSaida);
+		maquina.setPonteiroInstrucao(ponteiroInstrucao);
+		maquina.setTextoSaida(textoSaida);
 				
-		op.usar_Token(token_Instrucao, nome_Instrucao, endereco, tamanho_atual, argumentos_Instrucao,
+		maquina.usar_Token(token_Instrucao, nome_Instrucao, endereco, tamanho_atual, argumentos_Instrucao,
 				linha_Instrucao.getNumero_linha(), conjuntoMemoria, registradores);
 		
-		textoSaida = op.getTextoSaida();
-		ponteiroInstrucao = op.getPonteiroInstrucao();
+		textoSaida = maquina.getTextoSaida();
+		ponteiroInstrucao = maquina.getPonteiroInstrucao();
 
-		int proximoPonteiroInstrucao = op.getPonteiroInstrucao();
+		int proximoPonteiroInstrucao = maquina.getPonteiroInstrucao();
 		while (proximoPonteiroInstrucao < instrucoes.size()
 				&& (instrucoes.get(proximoPonteiroInstrucao).getNome().equals("START")
 				|| instrucoes.get(proximoPonteiroInstrucao).getNome().equals("WORD"))) {
