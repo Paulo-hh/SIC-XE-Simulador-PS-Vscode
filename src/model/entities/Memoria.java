@@ -1,10 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package model.entities;
-
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,13 +43,5 @@ public class Memoria {
 		}
 		memoria.get(dec_endereco).setValor(byte_valor);
 		return true;
-	}
-	
-	public void imprimirMemoria() { 
-		for(int i=0; i<256; i++) {
-			System.out.println(i + " -> " + Func.hexa_para_Int(memoria.get(i).getValor()));
-			
-		}
-	}
-	
+	}	
 }

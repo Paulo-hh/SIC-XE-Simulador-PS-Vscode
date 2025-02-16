@@ -1,5 +1,6 @@
 package gui;
 
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -19,7 +23,6 @@ import model.entities.Instrucao;
 import model.entities.ListaMemoria;
 import model.entities.Memoria;
 import model.entities.Montador;
-import model.entities.Maquina;
 import model.entities.Registrador;
 
 public class ViewController implements Initializable {
@@ -31,7 +34,19 @@ public class ViewController implements Initializable {
 	
 	public ViewController() {
 	}
-		
+	
+	@FXML
+    Menu menu = new Menu("Abrir"); 
+
+	@FXML
+    MenuItem tabelaSimbolos = new MenuItem("Tabela de Simbolos"); 
+	
+	@FXML
+    MenuItem codigoObjeto = new MenuItem("Código Objeto"); 
+
+	@FXML
+    MenuBar mb = new MenuBar(); 
+	
 	@FXML
 	private TableView<ListaMemoria> tableView = new TableView<ListaMemoria>();
 	
@@ -80,6 +95,7 @@ public class ViewController implements Initializable {
 	@FXML
 	private TextArea saida;
 	
+	
 	@FXML
 	public void onBtRodarAction() throws Exception {
 		while (true) {
@@ -117,6 +133,12 @@ public class ViewController implements Initializable {
 		mostrarRegistradores();
         tableView.setItems(getLista());
     	saida.setText(montador.getTextoSaida());
+	}
+	
+	@FXML
+	public void onMenuItemTabelaSimboloAction() {
+		montador.setTabelaSimbolo();
+		saida.setText(montador.getTextoSaida());
 	}
 	
     @Override
