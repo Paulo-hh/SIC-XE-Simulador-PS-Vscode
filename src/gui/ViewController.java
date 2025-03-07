@@ -123,9 +123,9 @@ public class ViewController implements Initializable {
 		lista_instrucao = Instrucao.lerTexto(texto);
 		Func.setInstrucoes(lista_instrucao);
 		montador = new Montador(lista_instrucao, memoria, registrador);
+		montador.processadorDeMacros();
 		montador.atribuirEndereco();
     	saida.setText(montador.getTextoSaida());
-		montador.processadorDeMacros();
 	}
 	
 	@FXML

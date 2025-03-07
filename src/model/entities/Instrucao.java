@@ -1,10 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package model.entities;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +54,11 @@ public class Instrucao {
 	public Integer getNumero_linha() {
 		return numero_linha;
 	}
+	
+	@Override
+	public String toString() {
+		return rotulo + "\t" + nome + "\t" + args;
+	}
 
 	public static List<Instrucao> lerTexto(String texto) {
 		List<Instrucao> lista_instrucao = new ArrayList<>();
@@ -80,4 +79,6 @@ public class Instrucao {
 		}
 		return lista_instrucao;
 	}
+	
+	
 }
