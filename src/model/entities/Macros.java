@@ -41,24 +41,25 @@ public class Macros {
 			parametros.add(s);
 		}
 		for(Instrucao instrucaoMacro: macro) {
-			List<String> novosArgumentos = instrucaoMacro.getArgs();
+			List<String> novosArgumentos = new ArrayList<>();
+			instrucaoMacro.getArgs().forEach(x -> novosArgumentos.add(x));
 			for(String parametro: parametros) {
 				if(instrucaoMacro.getRotulo().equals(parametro)) {
 					instrucaoMacro.setRotulo("#" + cont);
 				}
 				for(String argumentos: instrucaoMacro.getArgs()) {
 					if(argumentos.contains(parametro)) {
-						
-						cont++;
 						novosArgumentos.add("#" + cont);
 					}
 					else {
 						novosArgumentos.add(argumentos);
 					}
 				}
-				
+				cont++;
 			}
+			instrucaoMacro.setArgs(novosArgumentos);
 		}
+		saidaMacro();
 	}
 	
 	public static void saidaMacro(){
