@@ -125,6 +125,7 @@ public class ViewController implements Initializable {
 		montador = new Montador(lista_instrucao, memoria, registrador);
 		montador.atribuirEndereco();
     	saida.setText(montador.getTextoSaida());
+		montador.processadorDeMacros();
 	}
 	
 	@FXML

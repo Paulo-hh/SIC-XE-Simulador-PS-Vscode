@@ -13,7 +13,7 @@ public class Macros {
 	
 	public Macros(List<Instrucao> macro) {
 		super();
-		this.macro = macro;
+		Macros.macro = macro;
 		prototipo = macro.get(0);
 		macro.remove(0);
 	}
@@ -23,7 +23,7 @@ public class Macros {
 	}
 
 	public void setMacro(List<Instrucao> macro) {
-		this.macro = macro;
+		Macros.macro = macro;
 	}
 
 	public Instrucao getPrototipo() {
@@ -41,9 +41,9 @@ public class Macros {
 			parametros.add(s);
 		}
 		for(Instrucao instrucaoMacro: macro) {
-			List<String> novosArgumentos = new ArrayList<>();
-			instrucaoMacro.getArgs().forEach(x -> novosArgumentos.add(x));
 			for(String parametro: parametros) {
+				List<String> novosArgumentos = new ArrayList<>();
+				instrucaoMacro.getArgs().forEach(x -> novosArgumentos.add(x));
 				if(instrucaoMacro.getRotulo().equals(parametro)) {
 					instrucaoMacro.setRotulo("#" + cont);
 				}
@@ -56,8 +56,8 @@ public class Macros {
 					}
 				}
 				cont++;
+				instrucaoMacro.setArgs(novosArgumentos);
 			}
-			instrucaoMacro.setArgs(novosArgumentos);
 		}
 		saidaMacro();
 	}

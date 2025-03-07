@@ -103,6 +103,9 @@ public class Montador{
 				isMacro = false;
 			}
 		}
+		for(Macros macro: macros) {
+			macro.modoDeDefinicao();
+		}
 	}
 	
 	// PRIMEIRA PASSAGEM
