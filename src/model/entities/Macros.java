@@ -12,7 +12,6 @@ public class Macros {
 	
 	
 	public Macros(List<Instrucao> macro, int nivelPilha) {
-		super();
 		macro.forEach(x -> esqueleto.add(x));
 		macro.forEach(x -> originalMacro.add(x));
 		prototipo = esqueleto.get(1);
