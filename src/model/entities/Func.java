@@ -1,8 +1,5 @@
 package model.entities;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -158,27 +155,4 @@ public class Func {
 		throw new Exception("ERRO: o rótulo - '" + rotulo + "' pode estar errado");
 	}
     
-    public static void saidaMacro(List<Instrucao> instrucoes){
-		String path = "C:\\Temp\\Vscode\\PS__trabalho\\src\\model\\entities\\MASMAPRG.ASM";
-		try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
-			bw.newLine();
-			for(Instrucao instrucao: instrucoes) {
-				bw.write(instrucao.getRotulo() + "\t");
-				bw.write(instrucao.getNome() + "\t");
-				for(int cont=0; cont<instrucao.getArgs().size(); cont++) {
-					if(cont < instrucao.getArgs().size() - 1) {
-						bw.write(instrucao.getArgs().get(cont) + ",");
-					}
-					else {
-						bw.write(instrucao.getArgs().get(cont));
-					}
-				}
-				bw.newLine();
-			}
-			bw.close();
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
-    }
 }
