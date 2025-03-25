@@ -11,9 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -39,18 +36,6 @@ public class ViewController implements Initializable {
 	}
 	
 	@FXML
-    Menu menu = new Menu("Abrir"); 
-
-	@FXML
-    MenuItem tabelaSimbolos = new MenuItem("Tabela de Simbolos"); 
-	
-	@FXML
-    MenuItem codigoObjeto = new MenuItem("Código Objeto"); 
-
-	@FXML
-    MenuBar mb = new MenuBar(); 
-	
-	@FXML
 	private TableView<ListaMemoria> tableView = new TableView<ListaMemoria>();
 	
 	@FXML
@@ -67,9 +52,6 @@ public class ViewController implements Initializable {
 	
 	@FXML
 	private Button rodar;
-	
-	@FXML
-	private Button limpar;
 	
 	@FXML
 	private Button proximo;
@@ -116,24 +98,19 @@ public class ViewController implements Initializable {
 	}
 	
 	@FXML
-	public void onBtLimpar() throws Exception{
-		memoria = new Memoria();
-		registrador = new Registrador();
-		textoArea1.clear();
-		textoArea2.clear();
-		saida.clear();
-	}
-	
-	@FXML
 	public void onBtEnviarAction() throws Exception {
+		montador = new Montador(memoria, registrador);
 		String texto1 = textoArea1.getText().replaceAll("\n", System.getProperty("line.separator"));
-		lista_instrucao_mod1 = Ligador.lerTexto(texto1);
+		lista_instrucao_mod1 = Ligador.lerTexto(texto1);		
+		montador.setInstrucoes(lista_instrucao_mod1);
+		lista_instrucao_mod1 = montador.processadorDeMacros();
 		String texto2 = textoArea2.getText().replaceAll("\n", System.getProperty("line.separator"));
 		lista_instrucao_mod2 = Ligador.lerTexto(texto2);
+		montador.setInstrucoes(lista_instrucao_mod2);
+		lista_instrucao_mod2 = montador.processadorDeMacros();		
 		lista_instrucoes_ligadas = Ligador.unirModulos(lista_instrucao_mod1, lista_instrucao_mod2);
-		montador = new Montador(lista_instrucoes_ligadas, memoria, registrador);
 		Func.setInstrucoes(lista_instrucoes_ligadas);
-		montador.processadorDeMacros();
+		montador.setInstrucoes(lista_instrucoes_ligadas);
 		montador.atribuirEndereco();
     	saida.setText(montador.getTextoSaida());
 	}
